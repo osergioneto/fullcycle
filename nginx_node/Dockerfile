@@ -1,8 +1,9 @@
 FROM node:16.12.0
 
 WORKDIR /app
-COPY index.js package.json package-lock.json ./
 
-RUN npm ci
+COPY . ./
 
-ENTRYPOINT [ "node", "index" ]
+EXPOSE 8080
+
+ENTRYPOINT [ "./entrypoint.sh" ]

@@ -1,9 +1,35 @@
 version: "3.9"
 
 services:
+  db:
+    image: postgres:14.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nginx_node_db_development
+    ports:
+      - 5432:5432
+    restart: always
+    networks: 
+      - node-network
+
   api:
     build:
       context: .
       dockerfile: Dockerfile
+    entrypoint: ["/bin/bash", "./entrypoint.sh"]
+    restart: always
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: localhost
     ports:
       - 8080:8080 
+    depends_on:
+      - db
+    networks: 
+      - node-network
+
+networks: 
+  node-network:
+    driver: bridge
