@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const port = 8080
+const port = 3000
 const { Sequelize } = require('sequelize')
 const { People } = require("./models/index")
 const { v4: uuidv4 } = require('uuid')

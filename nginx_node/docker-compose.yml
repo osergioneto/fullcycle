@@ -14,6 +14,7 @@ services:
       - node-network
 
   api:
+    container_name: api
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,6 +24,12 @@ services:
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: localhost
+    expose:
+      - "3000"
+    depends_on:
+      - db
+    networks: 
+      - node-network
     ports:
       - 8080:8080 
     depends_on:
