@@ -1,18 +1,6 @@
 version: "3.9"
 
 services:
-  db:
-    image: postgres:14.0
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: nginx_node_db_development
-    ports:
-      - 5432:5432
-    restart: always
-    networks: 
-      - node-network
-
   api:
     container_name: api
     build:
@@ -30,10 +18,27 @@ services:
       - db
     networks: 
       - node-network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     ports:
-      - 8080:8080 
+    - 80:80
     depends_on:
-      - db
+      - api
+    networks: 
+      - node-network
+
+  db:
+    image: postgres:14.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nginx_node_db_development
+    expose:
+      - "5432"
+    restart: always
     networks: 
       - node-network
 
