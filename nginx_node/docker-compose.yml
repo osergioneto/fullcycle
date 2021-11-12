@@ -35,7 +35,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: nginx_node_db_development
+      POSTGRES_DB: nginx_node_db
     expose:
       - "5432"
     restart: always
