@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+    <main>
+        <div class="jumbotron">
+            <h1>Full Cycle Rocks!</h1>
+
+            <ul>
+                <% people.forEach((person)=> { %>
+                    <li>
+                        <%= person.name %>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+    </main>
+
+</body>
+
+</html>
